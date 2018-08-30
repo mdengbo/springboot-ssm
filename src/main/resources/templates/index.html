@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<%@ page pageEncoding="UTF-8"%>
+</html>
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+</head>
+<style>
+    .class1 {
+        background: #444;
+        color: #eee;
+        font-size: 15px
+    }
+</style>
+
+<script src="../static/js/Vue.js"></script>
+<script src="../static/js/vue-router.js"></script>
+<body>
+<div id="app">
+    <label for="r1">colors</label><input type="checkbox" v-model="class1" id="r1">
+    <br><br>
+    <div v-bind:class="{'class1': class1}">
+        directiva v-bind:class
+    </div>
+</div>
+
+<div id="vue_det1" class="class1">
+    <h1>site : {{site}}</h1>
+    <h1>url : {{url}}</h1>
+    <h1>details:{{details}}</h1>
+</div>
+
+<div id="app01">
+    {{5+5}}<br>
+    {{ ok ? 'YES' : 'NO' }}<br>
+    {{ message.split('').reverse().join('') }}
+    <div v-bind:id="'list-' + id">菜鸟教程</div>
+</div>
+
+
+<div id="app02">
+    <pre><a v-bind:href="url">菜鸟教程</a></pre>
+</div>
+
+<div id="app03">
+    <div v-if="b > 0.5">
+        {{b}}
+        Sorry
+    </div>
+    <div v-else>
+        {{b}}
+        Not sorry
+    </div>
+</div>
+
+<div id="app04">
+    <div v-if="type === 'A'">
+        A
+    </div>
+    <div v-else-if="type === 'B'">
+        B
+    </div>
+    <div v-else-if="type === 'C'">
+        C
+    </div>
+    <div v-else>
+        Not A/B/C
+    </div>
+</div>
+<div id="app05">
+    <h1 v-show="ok">Hello!</h1>
+</div>
+
+<div id="app06">
+    <ol>
+        <li v-for="site in sites">
+            {{ site.name }}
+        </li>
+    </ol>
+
+    <ul>
+        <template v-for="site in sites">
+            <li>{{ site.name }}</li>
+            <li>--------------</li>
+        </template>
+    </ul>
+
+    <ul>
+        <li v-for="value in object">
+            {{ value }}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="(value, key) in object">
+            {{ key }} : {{ value }}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="(value, key, index) in object">
+            {{ index }}. {{ key }} : {{ value }}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="n in 10">
+            {{ n }}
+        </li>
+    </ul>
+
+</div>
+
+<div id="app07">
+    <p>{{ site }}</p>
+</div>
+
+
+<script>
+
+    var data = {site: "菜鸟教程007", url: "www.runoob.com", alexa: 10000, details: '学技术，来蓝翔！不是梦'}
+    var vm = new Vue({
+        el: '#vue_det1',
+        data: data
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            class1: false
+        }
+    });
+
+    var vm1 = new Vue({
+        el: '#vue_det',
+        data: {
+            site: "菜鸟教程",
+            url: "www.runoob.com",
+            alexa: "10000"
+        },
+        methods: {
+            details: function () {
+                return this.site + " - 学的不仅是技术，更是梦想！" + this.alexa;
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app01',
+        data: {
+            ok: false,
+            message: 'RUNOOB',
+            id: 1
+        }
+    })
+
+    new Vue({
+        el: '#app02',
+        data: {
+            url: 'http://www.runoob.com'
+        }
+    })
+
+    b = Math.random()
+    new Vue({
+        el: '#app03',
+        b: b
+    })
+
+    new Vue({
+        el: '#app04',
+        data: {
+            type: 'C'
+        }
+    })
+
+    new Vue({
+        el: '#app05',
+        data: {
+            ok: false
+        }
+    })
+
+    new Vue({
+        el: '#app06',
+        data: {
+            sites: [
+                {name: 'Runoob'},
+                {name: 'Google'},
+                {name: 'Taobao'}
+            ],
+            object: {
+                name: '菜鸟教程',
+                url: 'http://www.runoob.com',
+                slogan: '学的不仅是技术，更是梦想！'
+            }
+        }
+    })
+
+    var vm = new Vue({
+        el: '#app07',
+        data: {
+            name: 'Google',
+            url: 'http://www.google.com'
+        },
+        computed: {
+            site: {
+                // getter
+                get: function () {
+                    return this.name + ' ' + this.url
+                },
+                // setter
+                set: function (newValue) {
+                    var names = newValue.split(' ')
+                    this.name = names[0]
+                    this.url = names[names.length - 1]
+                }
+            }
+        }
+    })
+
+</script>
+</body>
