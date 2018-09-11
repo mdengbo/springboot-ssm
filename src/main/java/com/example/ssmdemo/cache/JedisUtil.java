@@ -6,16 +6,16 @@ package com.example.ssmdemo.cache;
  * @desc
  * @Version 1.0
  **/
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import redis.clients.jedis.BinaryClient.LIST_POSITION;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.SortingParams;
 import redis.clients.util.SafeEncoder;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class JedisUtil {
     /**
@@ -98,9 +98,9 @@ public class JedisUtil {
         /**
          * 更改key
          *
-         * @param String
+         * @param oldkey
          *            oldkey
-         * @param String
+         * @param newkey
          *            newkey
          * @return 状态码
          * */
@@ -112,9 +112,9 @@ public class JedisUtil {
         /**
          * 更改key,仅当新key不存在时才执行
          *
-         * @param String
+         * @param oldkey
          *            oldkey
-         * @param String
+         * @param newkey
          *            newkey
          * @return 状态码
          * */
@@ -128,9 +128,9 @@ public class JedisUtil {
         /**
          * 更改key
          *
-         * @param String
+         * @param oldkey
          *            oldkey
-         * @param String
+         * @param newkey
          *            newkey
          * @return 状态码
          * */
@@ -332,7 +332,7 @@ public class JedisUtil {
         /**
          * 获取给定key中元素个数
          *
-         * @param String
+         * @param key
          *            key
          * @return 元素个数
          * */
@@ -347,7 +347,7 @@ public class JedisUtil {
         /**
          * 返回从第一组和所有的给定集合之间的差异的成员
          *
-         * @param String
+         * @param keys
          *            ... keys
          * @return 差异的成员集合
          * */
@@ -361,9 +361,9 @@ public class JedisUtil {
         /**
          * 这个命令等于sdiff,但返回的不是结果集,而是将结果集存储在新的集合中，如果目标已存在，则覆盖。
          *
-         * @param String
+         * @param newkey
          *            newkey 新结果集的key
-         * @param String
+         * @param keys
          *            ... keys 比较的集合
          * @return 新集合中的记录数
          * **/
