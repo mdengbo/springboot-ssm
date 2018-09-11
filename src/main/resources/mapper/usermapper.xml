@@ -3,7 +3,12 @@
 <mapper namespace="com.example.ssmdemo.dao.UserMapper" >
 
     <select id="selectUserByName"  resultType="com.example.ssmdemo.domain.User">
-        SELECT * FROM user WHERE id = #{id}
+        SELECT * FROM ssmdemo WHERE id = #{id}
     </select>
 
+    <insert id="insertInfo" parameterType="com.example.ssmdemo.domain.User">
+        insert into ssmdemo
+        (username, age, customerid)
+        value (#{username}, #{age}, #{customerid});
+    </insert>
 </mapper>
