@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface  UserMapper {
     public User selectUserByName(int id);
+
+    void insertInfo(User user);
 }
